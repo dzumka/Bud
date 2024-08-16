@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>	
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TECH-BUD</title>	
+    <style>
+/* Gallery*/
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    padding: 20px;
+    width: 86%;
+    max-width: 1000px;
+}
+
+.gallery img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox-img {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close:hover {
+    color: #ccc;
+}
+/* Animation */
+
+
+@keyframes fadeInBackground {
+    from {
+        opacity: 0.59; /* Start od pełnej przezroczystości */
+    }
+    to {
+        opacity: 0.69; /* Docelowa wartość opacity */
+    }
+}
+
+.home-trigger:hover .home{
+  animation: home 0.5s forwards;
+}
+.serv-trigger:hover .serv{
+  animation: serv 0.5s forwards;
+}
+.invest-trigger:hover .invest{
+
+}
+.call-trigger:hover .call{
+  animation: call 0.5s forwards;
+}
+
+@keyframes home {
+    100% { transform: translate(-1px, 1px) rotate(0deg) scale(1.2, 1.2) ;}
+    
+}
+
+@keyframes serv {
+    100% { transform: translate(-3px, 1px) rotate(0deg) scale(1.2, 1.2) ;}
+    
+}
+
+@keyframes invest {
+
+    100% { transform: translate(-1px, 1px) scale(1.1, 1.4) ;}
+}    
+	
+@keyframes call {
+ 10% { transform: translate(-1px, 2px) rotate(0deg); }
+    100% { transform: translate(-3px, 1px) rotate(-20deg) scale(1.2, 1.2) ;}
+    
+}
+/* Main CSS */
+
+@font-face {
+    font-family: 'IBMP';
+    src: url('font/IBM.ttf') format('truetype'); 
+	  font-weight: 600; /* Dopasuj do wagi czcionki */
+    font-style: normal;
+}
+span {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+	 display: flex;
+    position: relative;
+    overflow: hidden;
+	
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('Backgrounds/Invest.jpg');
+    background-size: cover;
+    background-position: center;
+	animation: fadeInBackground 2.5s forwards; /
+	
+    opacity: 0.69;
+    filter: brightness(0.6);
+    z-index: -1;
+	
+}
+
+body, html {       
+    display: flex;
+    flex-direction: column;
+	 overflow-y: auto;
+	  height: 100vh;
+}
+
+.top-header {
+    background: rgb(131, 178, 255);
+    min-height: 18vh !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-transform: uppercase;
+    font-family: "Cambria Math";
+}
+
+.top-header p {
+    margin: 0;
+    padding: 0vw;
+    font-size: 2.5vh; /* 30px */
+}
+
+.top-header h1 {
+    background: linear-gradient(to bottom, #ff0000, #808080);
+    -webkit-background-clip: text;
+    color: transparent;
+    filter: drop-shadow(1px 1px white);
+    margin: 0;
+    padding: 0;
+    font-size: 8vh; /* 73px */
+	font-family: 'IBMP', serif !important;
+    font-weight: 600;
+}
+
+.nav-bar {
+     min-height: 5vh; /* Stała wysokość paska nawigacyjnego jako 5% wysokości ekranu */
+	max-height: 5vh; 
+    width: 100%; /* Pasek nawigacyjny zajmuje całą szerokość ekranu */
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* position: fixed; Pasek nawigacyjny jest zawsze w tej samej pozycji */
+    top: 18vh; /* Pasek jest przypięty do górnej krawędzi ekranu */
+    left: 0; /* Pasek zaczyna się od lewej krawędzi ekranu */
+    z-index: 1000; /* Pasek nawigacyjny znajduje się nad innymi elementami */
+    overflow: hidden; /* Ukryj nadmiar zawartości */
+}
+
+.nav-bar a {
+    margin: 0;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    height: 3rem;
+    min-height: 2rem;
+    line-height: 3rem;
+    display: flex;
+    align-items: center;
+    padding: 1vw 1vw;
+    background-color: white;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 1rem;
+}
+
+.nav-bar img {
+    max-height: 1.2vw;
+    margin-right: 5px;
+}
+
+.nav-bar a:hover {
+    background-color: #ac5e38;
+    color: white;
+}
+
+.main-section {
+	 
+    height: auto;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.main-section img {
+    object-fit: fill;
+}
+
+.text-overlay {
+  font-family: "Helvetica" !important;
+    left: 30%;
+
+    color: white;
+    font-size: 0.0vw;
+    max-width: 60%;
+    text-align: left;
+    text-shadow: 1px 1px black;
+    display: flex;
+    flex-direction: column;
+    /*align-items: center;*/
+	 /*padding-bottom: 25px;*/
+}
+
+.text-overlay p:first-child {
+    font-size: 0vw;
+    font-weight: bold;
+   
+ 
+    padding-bottom: 2px;
+}
+
+.text-overlay p:last-child {
+    font-size: 0.1vw;
+    font-weight: bold;
+    text-shadow: 1px 1px black;
+    line-height: 1.2;
+    font-family: 'Futura';
+    margin-top: 10px;
+}
+
+.footer {
+    background-color: #ac5e38 !important;
+	position: absolute !important;
+	bottom: 0 !important;
+	width: 100% !important;
+    color: white !important;
+    text-align: center !important;
+    padding: 10px 0;
+	position: fixed !important;
+	
+}
+
+/* Dla ekranów o szerokości maksymalnej 600px (typowe urządzenia mobilne) */
+@media only screen and (max-width: 599px) {
+    .top-header h1 {
+        font-size: 8vw !important;
+    }
+	
+	.top-header{
+	 min-height: 18vh !important;
+	}
+
+    .top-header p {
+        font-size: 4.5vw !important;
+    }
+
+    .nav-bar {
+        min-height: 10vw !important;
+    }
+
+    .nav-bar a {
+        font-size: 0vw !important;
+        padding: 10px !important;
+        min-height: 20vw !important;
+        justify-content: right !important;
+        align-items: right !important;
+    }
+
+    .nav-bar img {
+        height: 10vw !important;
+        min-height: 5vw !important;
+    }
+
+    .main-section .text-overlay {
+        font-size: 0.1vw !important;
+        max-width: 84% !important;
+      
+        left: 9% !important;
+
+    }
+
+    .text-overlay p:first-child {
+        font-size: 0vw !important;
+    }
+
+    .text-overlay p:last-child {
+        font-size: 0.1vw !important;
+    }
+}
+
+/* 600 - 799 */
+@media only screen and (min-width: 600px) and (max-width: 799px) {
+    .top-header h1 {
+        font-size: 6vw !important;
+    }
+
+    .top-header p {
+        font-size: 3.5vw !important;
+    }
+	.top-header{
+	 min-height: 18vh !important;
+	}
+	
+
+    .nav-bar {
+        min-height: 5vw !important;
+    }
+
+    .nav-bar a {
+        font-size: 3vw !important;
+        padding: 15px !important;
+    }
+
+    .nav-bar img {
+        height: 10vw !important;
+        min-height: 3vw !important;
+    }
+
+    .main-section .text-overlay {
+        font-size: 0.1vw !important;
+        max-width: 84% !important;     
+        left: 9% !important;
+    }
+
+    .text-overlay p:first-child {
+        font-size: 0vw !important;
+    }
+
+    .text-overlay p:last-child {
+        font-size: 0.1vw !important;
+    }
+}
+
+/* 800-1200 */
+@media only screen and (min-width: 800px) and (max-width: 1200px) {
+    .top-header h1 {
+        font-size: 5vw !important;
+    }
+
+    .top-header p {
+        font-size: 3vw !important;
+    }
+
+    .nav-bar {
+        min-height: 5.5vw !important;
+    }
+
+    .nav-bar a {
+        font-size: 2.5vw !important;
+        padding: 10px !important;
+    }
+
+    .nav-bar img {
+        height: 5vw !important;
+        min-height: 2.5vw !important;
+        font-size: 2.5vw !important;
+    }
+
+    .text-overlay p:first-child {
+        font-size: 0vw !important;
+    }
+
+    .text-overlay p:last-child {
+        font-size: 0.1vw !important;
+    }
+
+    .main-section .text-overlay {
+        font-size: 0.1vw !important;
+        max-width: 40% !important;
+       
+        left: 33% !important;
+        transform: translate(0%, 0%) !important;
+    }
+}
+
+	
+		
+</style>
+</head>
+<body>
+
+
+    <div class="top-header">
+        <h1><a href="index.html" style="text-decoration: none; color: inherit;">TECH-BUD</a></h1>
+        <p>Obsługa techniczna dla budownictwa</p>
+    </div>
+
+ <div class="nav-bar">
+        <a href="index.html" class ="home-trigger"><img class ="home" src="icons/dom.png" alt="O firmie"><span> O firmie</span></a>
+        <a href="service.html" class ="serv-trigger"><img class ="serv" src="icons/uslugi.png" alt="Usługi"> <Span> Usługi</span></a>
+        <a href="invest.html" class ="invest-trigger" style="background-color: gray; color: white;"><img class ="invest" src="icons/Inwestycje.png" alt="Inwestycje"> <Span>Zrealizowane inwestycje</span></a>
+		
+        <a href="contact.html" class ="call-trigger"><img class ="call" src="icons/kontakt.png" alt="Kontakt"> <Span>Kontakt</Span></a>
+    </div>
+
+    <div class="main-section">
+        <div class="text-overlay">
+            <p><br><br>&nbsp;</p>
+            <p><h4>&nbsp;</h4>
+
+<center>
+   <div class="gallery">
+        
+        <img src="gallery/2.jpg" alt="">
+        <img src="gallery/3.jpg" alt="">
+        <img src="gallery/4.jpg" alt="">
+        <img src="gallery/5.jpg" alt="">
+        <img src="gallery/6.jpg" alt="">
+        <img src="gallery/7.jpg" alt="">
+        <img src="gallery/8.jpg" alt="">
+        <img src="gallery/9.jpg" alt="">
+		<img src="gallery/1.jpg" alt="">
+		
+    </div>
+ <div class="lightbox">
+        <span class="close">&times;</span>
+        <img class="lightbox-img" src="" alt="">
+		
+    </div>
+			</center>
+
+			</p>
+        </div>
+	
+    </div>
+&nbsp;<br><br><br><br>
+<div class ="footer" id='copyright'>
+		  Wszelkie prawa zastrzeżone © 2023 TECH-BUD
+</div>
+
+    <script>
+	document.addEventListener('DOMContentLoaded', function() {
+    const galleryImages = document.querySelectorAll('.gallery img');
+    const lightbox = document.querySelector('.lightbox');
+    const lightboxImg = document.querySelector('.lightbox-img');
+    const closeBtn = document.querySelector('.close');
+
+    galleryImages.forEach(image => {
+        image.addEventListener('click', function() {
+            lightbox.style.display = 'flex';
+            lightboxImg.src = this.src;
+        });
+    });
+
+    closeBtn.addEventListener('click', function() {
+        lightbox.style.display = 'none';
+    });
+
+    lightbox.addEventListener('click', function(e) {
+        if (e.target !== lightboxImg) {
+            lightbox.style.display = 'none';
+        }
+    });
+});
+
+
+	    document.addEventListener('DOMContentLoaded', function() {
+        // Pobierz aktualny rok
+        var currentYear = new Date().getFullYear();
+
+        // Znajdź element z identyfikatorem 'copyright'
+        var copyrightElement = document.getElementById('copyright');
+
+        // Zaktualizuj tekst wewnątrz elementu
+        if (copyrightElement) {
+            copyrightElement.innerHTML = 'Wszelkie prawa zastrzeżone © ' + currentYear + ' TECH-BUD';
+        }
+    });		 
+    </script>
+</body>
+</html>

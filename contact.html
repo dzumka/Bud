@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+	<link rel="preload" href="Contact.jpg" as="image">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TECH-BUD</title>	
+    <style>
+/* Animation */
+
+
+@keyframes fadeInBackground {
+    from {
+        opacity: 0.59; /* Start od pełnej przezroczystości */
+    }
+    to {
+        opacity: 0.69; /* Docelowa wartość opacity */
+    }
+}
+
+.home-trigger:hover .home{
+  animation: home 0.5s forwards;
+}
+.serv-trigger:hover .serv{
+  animation: serv 0.5s forwards;
+}
+.invest-trigger:hover .invest{
+  animation: invest 0.2s forwards;
+}
+.call-trigger:hover .call{
+
+}
+
+@keyframes home {
+    100% { transform: translate(-1px, 1px) rotate(0deg) scale(1.2, 1.2) ;}
+    
+}
+
+@keyframes serv {
+    100% { transform: translate(-3px, 1px) rotate(0deg) scale(1.2, 1.2) ;}
+    
+}
+
+@keyframes invest {
+
+    100% { transform: translate(-1px, 1px) scale(1.1, 1.4) ;}
+}    
+	
+@keyframes call {
+ 10% { transform: translate(-1px, 2px) rotate(0deg); }
+    100% { transform: translate(-3px, 1px) rotate(-20deg) scale(1.2, 1.2) ;}
+    
+}
+/* Main CSS */
+
+@font-face {
+    font-family: 'Almarai';
+    src: url('/font/Almarai-Bold.ttf') format ('truetype'); 
+}
+@font-face {
+    font-family: 'IBMP';
+    src: url('font/IBM.ttf') format('truetype'); 
+	  font-weight: 600; /* Dopasuj do wagi czcionki */
+    font-style: normal;
+}
+
+span {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+	 display: flex;
+    position: relative;
+    overflow: hidden;
+	
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('Backgrounds/Contact.jpg');
+    background-size: cover;
+    background-position: center;
+	animation: fadeInBackground 2.5s forwards; /
+	
+    opacity: 0.69;
+    filter: brightness(0.6);
+    z-index: -1;
+	
+}
+
+body, html {       
+    display: flex;
+    flex-direction: column;
+	 overflow-y: auto;
+}
+
+.top-header {
+    background: rgb(131, 178, 255);
+	min-height: 18vh !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-transform: uppercase;
+    font-family: "Cambria Math";
+}
+
+.top-header p {
+    margin: 0;
+    padding: 0vw;
+    font-size: 2.5vh; /* 30px */
+}
+
+.top-header h1 {
+    background: linear-gradient(to bottom, #ff0000, #808080);
+    -webkit-background-clip: text;
+    color: transparent;
+    filter: drop-shadow(1px 1px white);
+    margin: 0;
+    padding: 0;
+    font-size: 8vh; /* 73px */
+	font-family: 'IBMP', serif !important;
+    font-weight: 600;
+}
+
+.nav-bar {
+     height: 5vh; /* Stała wysokość paska nawigacyjnego jako 5% wysokości ekranu */
+    width: 100%; /* Pasek nawigacyjny zajmuje całą szerokość ekranu */
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*position: fixed;  Pasek nawigacyjny jest zawsze w tej samej pozycji */
+    top: 18vh; /* Pasek jest przypięty do górnej krawędzi ekranu */
+    left: 0; /* Pasek zaczyna się od lewej krawędzi ekranu */
+    z-index: 1000; /* Pasek nawigacyjny znajduje się nad innymi elementami */
+    overflow: hidden; /* Ukryj nadmiar zawartości */
+}
+
+.nav-bar a {
+    margin: 0;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    height: 3rem;
+    min-height: 2rem;
+    line-height: 3rem;
+    display: flex;
+    align-items: center;
+    padding: 1vw 1vw;
+    background-color: white;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 1rem;
+}
+
+.nav-bar img {
+    max-height: 1.2vw;
+    margin-right: 5px;
+}
+
+.nav-bar a:hover {
+    background-color: #ac5e38;
+    color: white;
+}
+
+.main-section {
+	 
+    height: auto;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.main-section img {
+    object-fit: fill;
+}
+
+.text-overlay {
+	 font-family: "Helvetica" !important;
+    left: 30%;
+
+    color: white;
+    font-size: 1.vw;
+    max-width: 40%;
+    text-align: left;
+    text-shadow: 1px 1px black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+	 padding-bottom: 25px;
+}
+
+.text-overlay p:first-child {
+    font-size: 2.5vw;
+    font-weight: bold;
+   
+    border-bottom: 4px solid white;
+    padding-bottom: 2px;
+}
+
+
+.text-overlay p:last-child {
+	font-family: "Almarai" !important;
+    font-size: 1.2vw;
+    font-weight: bold;
+    text-shadow: 1px 1px black;
+    line-height: 1.2;
+    font-family: 'Futura';
+    margin-top: 10px;
+}
+
+.footer {
+    background-color: #ac5e38;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+	position: fixed;
+}
+
+
+
+
+
+
+/* Dla ekranów o szerokości maksymalnej 600px (typowe urządzenia mobilne) */
+@media only screen and (max-width: 599px) {
+    .top-header h1 {
+        font-size: 8vw !important; 
+    }
+	.top-header{
+	   min-height: 18vh !important;
+	}
+
+    .top-header p {
+        font-size: 4.5vw !important;
+    }
+
+    .nav-bar {
+        min-height: 10vw !important;
+    }
+
+    .nav-bar a {
+        font-size: 0vw !important;
+        padding: 10px !important;
+        min-height: 20vw !important;
+        justify-content: right !important;
+        align-items: right !important;
+    }
+
+    .nav-bar img {
+        height: 10vw !important;
+        min-height: 5vw !important;
+    }
+
+    .main-section .text-overlay {
+        /*font-size: 6vw !important;*/
+        max-width: 84% !important;
+      
+        left: 9% !important;
+
+    }
+
+    .text-overlay p:first-child {
+        font-size: 8vw !important;
+    }
+
+    .text-overlay p:last-child {
+        font-size: 3.5vw !important;
+    }
+}
+
+/* 600 - 799 */
+@media only screen and (min-width: 600px) and (max-width: 799px) {
+    .top-header h1 {
+        font-size: 6vw !important;
+    }
+
+    .top-header p {
+        font-size: 3.5vw !important;
+    }
+
+    .nav-bar {
+        min-height: 5vw !important;
+    }
+
+    .nav-bar a {
+        font-size: 3vw !important;
+        padding: 15px !important;
+    }
+
+    .nav-bar img {
+        height: 10vw !important;
+        min-height: 3vw !important;
+    }
+
+    .main-section .text-overlay {
+       /* font-size: 8vw !important;*/
+        max-width: 84% !important;     
+        left: 9% !important;
+    }
+
+    .text-overlay p:first-child {
+        font-size: 6vw !important;
+    }
+
+    .text-overlay p:last-child {
+        font-size: 2.8vw !important;
+    }
+}
+
+/* 800-1200 */
+@media only screen and (min-width: 800px) and (max-width: 1200px) {
+    .top-header h1 {
+        font-size: 5vw !important;
+    }
+
+    .top-header p {
+        font-size: 3vw !important;
+    }
+
+    .nav-bar {
+        min-height: 5.5vw !important;
+    }
+
+    .nav-bar a {
+        font-size: 2.5vw !important;
+        padding: 10px !important;
+    }
+
+    .nav-bar img {
+        height: 5vw !important;
+        min-height: 2.5vw !important;
+        font-size: 2.5vw !important;
+    }
+
+    .text-overlay p:first-child {
+        font-size: 4vw !important;
+    }
+
+    .text-overlay p:last-child {
+        font-size: 2.5vw !important;
+    }
+
+    .main-section .text-overlay {
+        font-size: 2.5vw !important;
+        max-width: 40% !important;
+       
+        left: 33% !important;
+        transform: translate(0%, 0%) !important;
+    }
+}
+
+	
+		
+</style>
+</head>
+<body>
+
+
+    <div class="top-header">
+        <h1><a href="index.html" style="text-decoration: none; color: inherit;">TECH-BUD</a></h1>
+        <p>Obsługa techniczna dla budownictwa</p>
+    </div>
+
+    <div class="nav-bar">
+        <a href="index.html" class ="home-trigger" ><img class ="home" src="icons/dom.png" alt="O firmie"><span> O firmie</span></a>
+        <a href="service.html" class ="serv-trigger"><img class ="serv" src="icons/uslugi.png" alt="Usługi"> <Span> Usługi</span></a>
+        <a href="invest.html" class ="invest-trigger"><img class ="invest" src="icons/Inwestycje.png" alt="Inwestycje"> <Span>Zrealizowane inwestycje</span></a>
+		
+        <a href="contact.html" class ="call-trigger" style="background-color: gray; color: white;"><img class ="call" src="icons/kontakt.png" alt="Kontakt"> <Span>Kontakt</Span></a>
+    </div>
+
+    <div class="main-section">
+        <div class="text-overlay">
+            <p><br><br>Kontakt</p>
+            <p><b>Obsługa Techniczna dla Budownictwa TECH-BUD Piotr Dobrasiak</b><br><br>
+<table>
+<tbody>
+<tr>
+<td><b>Ulica:<b><br></td>
+<td>&nbsp;&nbsp;&nbsp;</td>
+<td><b style="font-weight: normal !important;  font-family: Consolas !important;">Wyzwolenia 19/34<br>62-510 Konin</b></td>
+</tr>
+<tr>
+<td><b>NIP:</b></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><b style="font-weight: normal !important;  font-family: Consolas !important;">665-183-91-55</b></td>
+</tr>
+<tr>
+<td><b>Regon:</b></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><b style="font-weight: normal !important;  font-family: Consolas !important;">30042600998</b></td>
+</tr>
+<tr>
+<td><b>Tel:</b></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><b style="font-weight: normal !important;  font-family: Consolas !important;">513-121-831</b></td>
+</tr>
+<tr>
+<td><b>e-mail:</b></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><b style="font-weight: normal !important;  font-family: Consolas !important;">piotr.d43@wp.pl</b></td>
+</tr>
+</tbody>
+</table>
+<!-- DivTable.com -->
+
+
+</p>
+        </div>		
+    </div>
+
+<div class ="footer" id='copyright'>
+		  Wszelkie prawa zastrzeżone © 2023 TECH-BUD
+</div>
+
+    <script >			
+	    document.addEventListener('DOMContentLoaded', function() {
+        // Pobierz aktualny rok
+        var currentYear = new Date().getFullYear();
+
+        // Znajdź element z identyfikatorem 'copyright'
+        var copyrightElement = document.getElementById('copyright');
+
+        // Zaktualizuj tekst wewnątrz elementu
+        if (copyrightElement) {
+            copyrightElement.innerHTML = 'Wszelkie prawa zastrzeżone © ' + currentYear + ' TECH-BUD';
+        }
+    });		 
+    </script>
+</body>
+</html>
